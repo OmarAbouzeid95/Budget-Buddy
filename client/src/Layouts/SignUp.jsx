@@ -13,7 +13,7 @@ function SignUp() {
 
     return ( 
         <div className="row my-5 justify-content-center">
-            <div className="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-4">
+            <div className="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-4 mt-5">
                 <form>
                     <div className="mb-3">
                         <label htmlFor="firstName" className="form-label">First Name</label>
