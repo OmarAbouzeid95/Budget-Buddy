@@ -1,5 +1,6 @@
 import 'bootstrap/js/dist/collapse.js'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Header() {
 
@@ -9,9 +10,9 @@ function Header() {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-lg">
-                <a className="navbar-brand" href="/">Budget Buddy</a>
+                <Link className="navbar-brand text-primary" to="/">Budget Buddy</Link>
                 <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <label className="burger navbar-toggler-icon" for="burger">
+                    <label className="burger navbar-toggler-icon" htmlFor="burger">
                         <input type="checkbox" id="burger"></input>
                             <span></span>
                             <span></span>
@@ -21,13 +22,16 @@ function Header() {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className={`nav-link ${active === 'home' ? 'active' : ''}`} aria-current="page" href="#" onClick={() => setActive('home')}>Home</a>
+                            <Link className={`nav-link ${active === 'home' ? 'active' : ''}`} aria-current="page" to="/" onClick={() => setActive('home')}>Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className={`nav-link ${active === 'features' ? 'active' : ''}`} href="#" onClick={() => setActive('features')}>Features</a>
+                            <Link className={`nav-link ${active === 'budget' ? 'active' : ''}`} to="/budget" onClick={() => setActive('budget')}>Budget</Link>
                         </li>
                         <li className="nav-item">
-                            <a className={`nav-link ${active === 'pricing' ? 'active' : ''}`} href="#" onClick={() => setActive('pricing')}>Pricing</a>
+                            <Link className={`nav-link ${active === 'insights' ? 'active' : ''}`} to="/insights" onClick={() => setActive('insights')}>Insights</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className={`nav-link ${active === 'singin' ? 'active' : ''}`} to="/sign-in" onClick={() => setActive('singin')}>Sign in</Link>
                         </li>
                     </ul>
                 </div>
