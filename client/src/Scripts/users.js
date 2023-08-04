@@ -1,5 +1,5 @@
 
-const findUser = async (url, user) => {
+const postUser = async (url, user) => {
     const res = await fetch(url, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
@@ -10,4 +10,4 @@ const findUser = async (url, user) => {
 }
 
 
-export {findUser}
+export {postUser}

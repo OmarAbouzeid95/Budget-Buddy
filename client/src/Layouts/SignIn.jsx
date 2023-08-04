@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 // importing script functions
-import { findUser } from '../Scripts/users'
+import { postUser } from '../Scripts/users'
 
 function SignIn() {
 
@@ -38,7 +38,7 @@ function SignIn() {
             validData = false
         }
         if(validData) {
-            const foundUser = await findUser(`${process.env.REACT_APP_BACKEND_URL}/user`, {email:formData.email.toLowerCase(), password: formData.password})
+            const foundUser = await postUser(`${process.env.REACT_APP_BACKEND_URL}/getUser`, {email:formData.email.toLowerCase(), password: formData.password})
             // if no user is returned then the email or password are incorrect
             if(!foundUser) {
                 validationMessages.generalMessage = 'Incorrect username or password.'

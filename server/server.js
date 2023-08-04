@@ -35,7 +35,8 @@ async function run() {
 
 // API endpoints
 
-app.post('/user', (req,res) => {
+// fetching users
+app.post('/getUser', (req,res) => {
     const { email, password } = req.body
     users.findOne({ email: email, password: password })
     .then(result => {
@@ -46,12 +47,16 @@ app.post('/user', (req,res) => {
     })
 })
 
-app.get('/getUser', (req,res) => {
-    const first = users.findOne()
-    .then(user => {
-        res.status(200).json(user)
-    })
-
+// adding users
+app.post('/addUser', (req, res) => {
+  const user = req.body
+  users.insertOne(user)
+  .then(result => {
+    res.status(200).json(result)
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
 })
 
 run().then(app.listen(PORT, () => {
