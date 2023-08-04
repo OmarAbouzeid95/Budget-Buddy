@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 function SignUp() {
 
@@ -10,6 +12,8 @@ function SignUp() {
                                                 password: '',
                                                 repassword: ''
                                             })
+
+    const [showPw, setShowPw] = useState(false)
 
     return ( 
         <div className="row my-5 justify-content-center">
@@ -29,11 +33,19 @@ function SignUp() {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="password" onChange={(e) => setFormData({...formData, password: e.target.value})}></input>
+                        <div className="password-container">
+                            <input type={`${showPw ? 'text' : 'password'}`} className="form-control" id="password" onChange={(e) => setFormData({...formData, password: e.target.value})}></input>
+                            <FontAwesomeIcon className={`show-pw-icon ${showPw ? 'd-none' : ''}`} icon={faEye} style={{color: "#000000",}} onClick={() => setShowPw(showPw => !showPw)}/>
+                            <FontAwesomeIcon className={`show-pw-icon ${showPw ? '' : 'd-none'}`} icon={faEyeSlash} style={{color: "#000000",}} onClick={() => setShowPw(showPw => !showPw)}/>
+                        </div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="repassword" className="form-label">Re-enter Password</label>
-                        <input type="password" className="form-control" id="repassword" onChange={(e) => setFormData({...formData, repassword: e.target.value})}></input>
+                        <div className="password-container">
+                            <input type={`${showPw ? 'text' : 'password'}`} className="form-control" id="repassword" onChange={(e) => setFormData({...formData, password: e.target.value})}></input>
+                            <FontAwesomeIcon className={`show-pw-icon ${showPw ? 'd-none' : ''}`} icon={faEye} style={{color: "#000000",}} onClick={() => setShowPw(showPw => !showPw)}/>
+                            <FontAwesomeIcon className={`show-pw-icon ${showPw ? '' : 'd-none'}`} icon={faEyeSlash} style={{color: "#000000",}} onClick={() => setShowPw(showPw => !showPw)}/>
+                        </div>
                     </div>
                     <div className="text-center">
                         <button type="submit" className="btn btn-primary px-3">Sign Up</button>

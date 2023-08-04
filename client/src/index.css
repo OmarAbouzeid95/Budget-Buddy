@@ -106,4 +106,17 @@ body {
   box-shadow: none;
 }
 
+.password-container {
+  position: relative;
+}
+
+.show-pw-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.show-pw-icon:hover{ 
+  cursor: pointer;
+}
 

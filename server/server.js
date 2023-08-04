@@ -2,31 +2,63 @@
 const express = require('express')
 const cors = require('cors')
 const { MongoClient } = require('mongodb')
-const dotenv = require('dotenv')
+require('dotenv').config()
 const app = express()
-dotenv.config()
 
-const PORT = process.env.PORT || 6969
+
+const PORT = process.env.PORT || 3300
+
+// using json format on express and enabling cors from the Front-end URL
 
 app.use(express.json())
+app.use(cors({  origin: process.env.FRONTEND_URL}))
 
+// connecting to MongoDB
 
-const uri = "<Your Connection String>"
+const uri = process.env.MONGO_URI
 const client = new MongoClient(uri)
+let db, users
 
 async function run() {
   try {
     await client.connect()
-    const db = client.db('sample_mflix')
-    const collection = db.collection('movies')
+    db = client.db('buddy')
+    users = db.collection('users')
 
     // Find the first document in the collection
-    const first = await collection.findOne()
+    const first = await users.findOne()
     console.log(first)
   } catch(error) {
     console.log(error)
   }
 }
+
+// API endpoints
+
+app.post('/user', (req,res) => {
+    const { email, password } = req.body
+    users.findOne({ email: email, password: password })
+    .then(result => {
+        res.status(200).json(result)
+    })
+    .catch(error => {
+        res.status(500).json({error: error})
+    })
+})
+
+app.get('/getUser', (req,res) => {
+    const first = users.findOne()
+    .then(user => {
+        res.status(200).json(user)
+    })
+
+})
+
 run().then(app.listen(PORT, () => {
     console.log(`listening to port ${PORT}`)
 }))
+
+
+
+
+
