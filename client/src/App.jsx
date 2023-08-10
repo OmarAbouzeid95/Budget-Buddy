@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider} from "react-router-dom"
 
-// Layouts
-import Root from './Layouts/Root'
-import ErrorPage from './Layouts/ErrorPage'
-import SignIn from './Layouts/SignIn'
-import SignUp from './Layouts/SignUp'
+// layouts
+import Root from './layouts/Root'
+import ErrorPage from './layouts/ErrorPage'
+import SignIn from './layouts/SignIn'
+import SignUp from './layouts/SignUp'
 
 function App() {
 

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 // importing script functions
-import { postUser } from '../Scripts/users'
+import { postUser } from '../scripts/users'
 
 function SignUp() {
 

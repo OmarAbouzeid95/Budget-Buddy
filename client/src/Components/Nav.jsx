@@ -1,11 +1,16 @@
 import 'bootstrap/js/dist/collapse.js'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-function Header() {
+function Nav() {
 
     // state to track active tab
     const [active, setActive] = useState('home')
+    
+    // current user of Redux
+    const user = useSelector(state => state.user)
+    console.log('user name from nav ' + user.firstName)
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -31,7 +36,7 @@ function Header() {
                             <Link className={`nav-link ${active === 'insights' ? 'active' : ''}`} to="/insights" onClick={() => setActive('insights')}>Insights</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link ${active === 'singin' ? 'active' : ''}`} to="/sign-in" onClick={() => setActive('singin')}>Sign in</Link>
+                            <Link className={`nav-link ${active === 'singin' ? 'active' : ''}`} to="/sign-in" onClick={() => setActive('singin')}>{user ? 'Sign in' : `Hi, ${user.firstName}`}</Link>
                         </li>
                     </ul>
                 </div>
@@ -40,4 +45,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default Nav;

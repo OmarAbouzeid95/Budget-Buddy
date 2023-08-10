@@ -4,7 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 // importing script functions
-import { postUser } from '../Scripts/users'
+import { postUser } from '../scripts/users'
+
+// redux
+import { update } from '../redux/user'
+import { useSelector, useDispatch } from 'react-redux'
 
 function SignIn() {
 
@@ -20,6 +24,11 @@ function SignIn() {
                                                     })  
 
     const [showPw, setShowPw] = useState(false)
+
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
+
+    console.log(user)
 
     const updateUser = async () => {
         // validating form inputs before checking if user exists in database
@@ -42,6 +51,10 @@ function SignIn() {
             // if no user is returned then the email or password are incorrect
             if(!foundUser) {
                 validationMessages.generalMessage = 'Incorrect username or password.'
+            }else {
+                // update user redux slice
+                console.log('dispatching')
+                dispatch(update(foundUser))
             }
         }
         setFormMessages(validationMessages)
